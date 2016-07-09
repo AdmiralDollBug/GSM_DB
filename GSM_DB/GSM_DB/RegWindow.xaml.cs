@@ -36,7 +36,7 @@ namespace GSM_DB
                     MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
                 return;
             }
-            string connectionStr = "Data Source=THESHARING\\SQLEXPRESS;UID=thesharing;PWD=HZL04291316wr;Initial Catalog=AccountDB;Integrated Security=True";
+            string connectionStr = "Data Source=" + DatabaseInfo.dataSource + ";UID=" + DatabaseInfo.uid + ";PWD=" + DatabaseInfo.pwd + ";Initial Catalog=AccountDB;Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connectionStr)) {
                 string queryString = "SELECT * FROM dbo.Account WHERE Name = " + AccountTextBox.Text;
                 SqlCommand command = new SqlCommand(queryString, connection);

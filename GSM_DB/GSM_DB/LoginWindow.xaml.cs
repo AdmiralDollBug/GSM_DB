@@ -23,7 +23,8 @@ namespace GSM_DB
     {
         public LoginWindow() {
             InitializeComponent();
-            string connectionStr = "Data Source=THESHARING\\SQLEXPRESS;UID=thesharing;PWD=HZL04291316wr;Initial Catalog=master;Integrated Security=True";
+            DatabaseInfo.getDatabaseInfo();
+            string connectionStr = "Data Source=" + DatabaseInfo.dataSource + ";UID=" + DatabaseInfo.uid + ";PWD=" + DatabaseInfo.pwd + ";Initial Catalog=master;Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connectionStr)) {
                 string queryStringDatabase = "if not exists (select * from sys.databases where name = 'AccountDB')\n"+
                     " begin\n create database AccountDB;\n end";
@@ -31,7 +32,7 @@ namespace GSM_DB
                 connection.Open();
                 commandDatabase.ExecuteNonQuery();
             }
-            string connectionStr2 = "Data Source=THESHARING\\SQLEXPRESS;UID=thesharing;PWD=HZL04291316wr;Initial Catalog=AccountDB;Integrated Security=True";
+            string connectionStr2 = "Data Source=" + DatabaseInfo.dataSource + ";UID=" + DatabaseInfo.uid + ";PWD=" + DatabaseInfo.pwd + "Initial Catalog=AccountDB;Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connectionStr2)) {
                 connection.Open();
                 string queryStringTable = "if not exists(select * from dbo.sysobjects " +
@@ -56,7 +57,7 @@ namespace GSM_DB
                     MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
                 return;
             }
-            string connectionStr = "Data Source=THESHARING\\SQLEXPRESS;UID=thesharing;PWD=HZL04291316wr;Initial Catalog=AccountDB;Integrated Security=True";
+            string connectionStr = "Data Source=" + DatabaseInfo.dataSource + ";UID=" + DatabaseInfo.uid + ";PWD=" + DatabaseInfo.pwd + ";Initial Catalog=AccountDB;Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connectionStr)) {
                 string queryString = "SELECT * FROM dbo.Account WHERE Name = " + AccountTextBox.Text;
                 SqlCommand command = new SqlCommand(queryString, connection);
@@ -67,22 +68,23 @@ namespace GSM_DB
                     using (MD5 md5Hash = MD5.Create()) {
                         passwordMD5 = CalcMD5.GetMd5Hash(md5Hash, PassWord.Password);
                     }
-                    
-                    System.Windows.MessageBox.Show("账号已注册，您可以直接登录。", "账号已注册", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
-                    reader.Close();
-                    return;
+                    if ((string)reader[1] == passwordMD5) {
+                        System.Windows.MessageBox.Show("登录成功。", "成功", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
+                        reader.Close();
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
+                        this.Close();
+                    }
+                    else {
+                        System.Windows.MessageBox.Show("密码错误，请检查。", "错误", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
+                        reader.Close();
+                        return;
+                    }                    
                 }
                 else {
+                    System.Windows.MessageBox.Show("账号不存在，请检查。", "错误", MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
                     reader.Close();
-                    string passwordMD5;
-                    using (MD5 md5Hash = MD5.Create()) {
-                        passwordMD5 = CalcMD5.GetMd5Hash(md5Hash, PassWord.Password);
-                    }
-                    string queryStringInsert = "insert into dbo.Account (Name, Password) values ('" + AccountTextBox.Text + "', '" + passwordMD5 + "')";
-                    SqlCommand commandInsert = new SqlCommand(queryStringInsert, connection);
-                    commandInsert.ExecuteNonQuery();
-                    MessageBox.Show("注册成功。", "提示", MessageBoxButton.OK, MessageBoxImage.Information, MessageBoxResult.OK);
-                    this.Close();
+                    
                 }
             }
         }
