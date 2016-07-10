@@ -66,13 +66,20 @@
     </ApplicationDefinition>
     <Compile Include="CalcMD5.cs" />
     <Compile Include="DatabaseInfo.cs" />
-    <Compile Include="Import.xaml.cs">
-      <DependentUpon>Import.xaml</DependentUpon>
+    <Compile Include="ExportPage.xaml.cs">
+      <DependentUpon>ExportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportPage.xaml.cs">
+      <DependentUpon>ImportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegWindow.xaml.cs">
       <DependentUpon>RegWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Import.xaml">
+    <Page Include="ExportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

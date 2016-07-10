@@ -5,24 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GSM_DB"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="500" Width="600">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        <TextBox x:Name="TextBox1" Width="100" Height="50" 
-                 Margin="100,10,318.4,20"/>
-        <TextBox x:Name="TextBox2" Width="100" Height="50" Margin="301,10,117.4,20" />
-        <TextBlock x:Name="text" Grid.Row="1"
-                   Text="this is a textblock" 
-                   HorizontalAlignment="Center"  VerticalAlignment="Center"/>
-        <Button x:Name="button" 
-                Content="Button" 
-                HorizontalAlignment="Center" 
-                Grid.Row="2" VerticalAlignment="Center" 
-                Width="75" Click="button_Click" RenderTransformOrigin="1.672,0.807"/>
+        <Menu Grid.Row="0" Background="White">
+            <MenuItem Header="数据" Padding="10 0 10 0">
+                <MenuItem Header="批量导入" />
+                <MenuItem Header="批量导出" />
+            </MenuItem>
+            <MenuItem Header="查询" Padding="10 0 10 0">
+                <MenuItem Header="BTS" />
+                <MenuItem Header="Cell" />
+                <MenuItem Header="话务查询" />
+            </MenuItem>
+            <MenuItem Header="分析" Padding="10 0 10 0">
+                <MenuItem Header="小时级查询"/>
+                <MenuItem Header="分钟级查询"/>
+                <MenuItem Header="拥塞查询"/>
+            </MenuItem>
+            <MenuItem Header="邻区" Padding="10 0 10 0">
+                <MenuItem Header="邻区计算"/>
+                <MenuItem Header="邻区查询"/>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="帮助" Padding="10 0 10 0">
+                <MenuItem Header="查看帮助"/>
+                <MenuItem Header="关于..."/>
+                <Separator />
+                <MenuItem Header="退出"/>
+            </MenuItem>
+        </Menu>
+        <Frame x:Name="mainFrame" 
+               NavigationUIVisibility="Hidden"
+               Grid.Row="1" Source="ExportPage.xaml" />
     </Grid>
 </Window>
