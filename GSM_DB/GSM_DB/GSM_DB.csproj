@@ -92,6 +92,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CalcMD5.cs" />
     <Compile Include="DatabaseInfo.cs" />
     <Compile Include="Distance.xaml.cs">
@@ -118,6 +121,10 @@
     <Compile Include="RegWindow.xaml.cs">
       <DependentUpon>RegWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Distance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

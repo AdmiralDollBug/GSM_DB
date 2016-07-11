@@ -72,7 +72,7 @@ as
 	select tpTime as HTime, avg(tpTraff) as HAvgTraff,
 		sum(tpTraff)/avg(tpNTCH) as HTraffPerLine,
 		cast(sum(tpCongsnum) as real)/cast(sum(tpCallnum) as real)*100 as HAvgCongsnum,
-		sum(tpThTraff)/sum(tpTraff) as HThTraffRate
+		sum(tpThTraff)/sum(tpTraff)*100 as HThTraffRate
 	into HourlyDetail
 	from tmppc
 	group by tpTime
@@ -119,7 +119,7 @@ as
 	select tpTime as MTime, avg(tpTraff) as MAvgTraff,
 		sum(tpTraff)/avg(tpNTCH) as MTraffPerLine,
 		cast(sum(tpCongsnum) as real)/cast(sum(tpCallnum) as real)*100 as MAvgCongsnum,
-		sum(tpThTraff)/sum(tpTraff) as MThTraffRate
+		sum(tpThTraff)/sum(tpTraff)*100 as MThTraffRate
 	into MinuteDetail
 	from tmppc
 	group by tpTime
@@ -166,7 +166,7 @@ as
 	select tpTime as QTime, avg(tpTraff) as QAvgTraff,
 		sum(tpTraff)/avg(tpNTCH) as QTraffPerLine,
 		cast(sum(tpCongsnum) as real)/cast(sum(tpCallnum) as real)*100 as QAvgCongsnum,
-		sum(tpThTraff)/sum(tpTraff) as QThTraffRate
+		sum(tpThTraff)/sum(tpTraff)*100 as QThTraffRate
 	into QuarterDetail
 	from tmppc
 	group by tpTime
@@ -214,7 +214,7 @@ as
 		avg(tpTraff) as CAvgTraff,
 		sum(tpTraff)/avg(tpNTCH) as CTraffPerLine,
 		cast(sum(tpCongsnum) as real)/cast(sum(tpCallnum) as real)*100 as CAvgCongsnum,
-		sum(tpThTraff)/sum(tpTraff) as CThTraffRate
+		sum(tpThTraff)/sum(tpTraff)*100 as CThTraffRate
 	into CongsDetail
 	from tmppc
 	group by tpTime,tpCELLID

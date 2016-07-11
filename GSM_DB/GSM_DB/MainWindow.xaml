@@ -33,7 +33,7 @@
             <Separator/>
             <MenuItem Header="帮助" Padding="10 0 10 0">
                 <MenuItem Header="查看帮助"/>
-                <MenuItem Header="关于..."/>
+                <MenuItem Header="关于..." Click="About_Click"/>
                 <Separator />
                 <MenuItem Header="退出"/>
             </MenuItem>

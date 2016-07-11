@@ -1,0 +1,14 @@
+﻿<Window x:Class="GSM_DB.About"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GSM_DB"
+        mc:Ignorable="d"
+        Title="About" Height="426" Width="617.827">
+    <Grid>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="28,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="278" Width="554" FontSize="18"><Run Foreground="#FFA31515" FontFamily="NSimSun" Text="　"/><Run Foreground="#FFA31515" FontFamily="Hobo Std" Text="　实际GSM网络为移动用户提供话务承载，话务量可以描述网络容量（也即话务承载能力）的大小。GSM网络由众多小区组成，不同小区在话务分布和承载能力等方面存在差异。小区级话务量精确描述了各个小区的真实话务承载能力（容量）。除此之外，GSM网络话务量还包括全网级、MSC级、BSC级，这3个级别的话务量可以根据小区话务量通过累积计算得到。"/><LineBreak/><Run Foreground="#FFA31515" FontFamily="Hobo Std" Text="　　本次课程设计需要开发的系统为数据库应用系统（DBAS），根据课堂教学所讲授的数据库系统的设计过程，参考《软件工程》课程所讲述的软件开发方法，在基本课程实验已经建立的数据库基础上实现。"/><LineBreak/><Run Foreground="#FFA31515" FontFamily="Hobo Std" Text="    该GSM网络话务分析系统应能有效支持对数据库中GSM网络配置信息和小区话务的访问与处理，如网管实体信息和小区信息的数据管理和查询、统计，以及对各时间级别话务量的查询和统计等等。"/><LineBreak/><Run Foreground="#FFA31515" FontFamily="NSimSun"/><LineBreak/><Span Foreground="#FFA31515" FontFamily="NSimSun"><Run/></Span></TextBlock>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="169,23,0,0" TextWrapping="Wrap" Text="关于GSM系统" VerticalAlignment="Top" Width="250" Height="52" FontFamily="Snap ITC" FontSize="36"/>
+
+    </Grid>
+</Window>
