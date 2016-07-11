@@ -22,7 +22,7 @@ namespace GSM_DB
     /// <summary>
     /// ExportPage.xaml 的交互逻辑
     /// </summary>
-    public partial class ExportPage : Page
+    public partial class ExportPage : Window
     {
         string[] infoType = { "MS", "MSC", "BSC", "BTS", "CELL", "CELLFREQ", "ANTENNA", "PHONECALL", "RTEST", "IDLEINFO" };
         public ExportPage() {
@@ -36,7 +36,7 @@ namespace GSM_DB
             if (comboBox.SelectedIndex == 0) {
                 FolderBrowserDialog folderBrowseDialog = new FolderBrowserDialog();
                 DialogResult result = folderBrowseDialog.ShowDialog();
-                if(result == DialogResult.OK) {
+                if(result == System.Windows.Forms.DialogResult.OK) {
                     filePathTextBox.Text = folderBrowseDialog.SelectedPath;
                 }
             }

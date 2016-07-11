@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GSM_DB"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="600">
+        Title="MainWindow" Height="300" Width="400"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -14,13 +15,13 @@
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Background="White">
             <MenuItem Header="数据" Padding="10 0 10 0">
-                <MenuItem Header="批量导入" />
-                <MenuItem Header="批量导出" />
+                <MenuItem Name="importMenuItem"  Header="批量导入" Click="ImportMenuItem_Click" />
+                <MenuItem Name="exportMenuItem" Header="批量导出" Click="ExportMenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="查询" Padding="10 0 10 0">
-                <MenuItem Header="BTS" />
-                <MenuItem Header="Cell" />
-                <MenuItem Header="话务查询" />
+                <MenuItem Name="inqueryBTSMenuItem" Header="BTS" Click="InqueryBTSMenuItem_Click"/>
+                <MenuItem Name="inqueryCellIDMenuItem" Header="Cell" Click="inqueryCellIDMenuItem_Click"/>
+                <MenuItem Name="inqueryTrafficeInfoMenuItem"  Header="话务查询" Click="inqueryTrafficeInfoMenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="分析" Padding="10 0 10 0">
                 <MenuItem Header="小时级查询"/>
@@ -39,8 +40,5 @@
                 <MenuItem Header="退出"/>
             </MenuItem>
         </Menu>
-        <Frame x:Name="mainFrame" 
-               NavigationUIVisibility="Hidden"
-               Grid.Row="1" Source="ExportPage.xaml" />
     </Grid>
 </Window>

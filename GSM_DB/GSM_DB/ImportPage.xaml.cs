@@ -20,7 +20,7 @@ namespace GSM_DB
     /// <summary>
     /// ImportPage.xaml 的交互逻辑
     /// </summary>
-    public partial class ImportPage : Page
+    public partial class ImportPage : Window
     {
         public ImportPage() {
             InitializeComponent();
