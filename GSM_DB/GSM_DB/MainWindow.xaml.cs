@@ -58,5 +58,9 @@ namespace GSM_DB
             Distance distance = new Distance();
             distance.ShowDialog();
         }
+
+        private void inqueryMiniteTrafficInfoMenuItem_Click(object sender, RoutedEventArgs e) {
+
+        }
     }
 }

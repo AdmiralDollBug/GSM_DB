@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 namespace GSM_DB
 {
     /// <summary>
-    /// ImqueryTrafficInfoPage.xaml 的交互逻辑
+    /// InqueryｍMinuteTrafficInfoPage.xaml 的交互逻辑
     /// </summary>
-    public partial class ImqueryTrafficInfoPage : Window
+    public partial class InqueryｍMinuteTrafficInfoPage : Window
     {
-        public ImqueryTrafficInfoPage() {
+        public InqueryｍMinuteTrafficInfoPage() {
             InitializeComponent();
             dataPicker.SelectedDate = new DateTime(2007, 10, 1);
             dataPicker.DisplayDateStart = new DateTime(2007, 9, 1);
@@ -50,7 +50,7 @@ namespace GSM_DB
             DateTime date = (DateTime)dataPicker.SelectedDate;
             DateTime startTime = new DateTime(date.Year, date.Month, date.Day, prevTime.Hour, prevTime.Minute, prevTime.Second);
             DateTime endTime = new DateTime(date.Year, date.Month, date.Day, nextTime.Hour, nextTime.Minute, nextTime.Second);
-            if(startTime.CompareTo(endTime) >= 0) {
+            if (startTime.CompareTo(endTime) >= 0) {
                 System.Windows.MessageBox.Show("起始日期时间必须早于终止日期时间。", "日期填写错误",
                     MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
                 return;
@@ -100,7 +100,7 @@ namespace GSM_DB
                         series.DependentValuePath = "HThTraffRate";
                         chart.Title = "小时级半速率话务比例";
                         break;
-                }               
+                }
                 series.Title = comboBoxCellID.Text;
                 series.DataContext = table.DefaultView;
                 grid.Visibility = Visibility.Visible;

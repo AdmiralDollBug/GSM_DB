@@ -14,22 +14,20 @@
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Background="White">
-            <MenuItem Header="数据" Padding="10 0 10 0">
+            <MenuItem Header="数据处理" Padding="10 0 10 0">
                 <MenuItem Name="importMenuItem"  Header="批量导入" Click="ImportMenuItem_Click" />
                 <MenuItem Name="exportMenuItem" Header="批量导出" Click="ExportMenuItem_Click"/>
             </MenuItem>
-            <MenuItem Header="查询" Padding="10 0 10 0">
+            <MenuItem Header="信息查询" Padding="10 0 10 0">
                 <MenuItem Name="inqueryBTSMenuItem" Header="BTS" Click="InqueryBTSMenuItem_Click"/>
                 <MenuItem Name="inqueryCellIDMenuItem" Header="Cell" Click="inqueryCellIDMenuItem_Click"/>
-                <MenuItem Name="inqueryTrafficeInfoMenuItem"  Header="话务查询" Click="inqueryTrafficeInfoMenuItem_Click"/>
             </MenuItem>
-            <MenuItem Header="分析" Padding="10 0 10 0">
-                <MenuItem Header="小时级查询"/>
-                <MenuItem Header="分钟级查询"/>
+            <MenuItem Header="话务查询" Padding="10 0 10 0">
+                <MenuItem Name="inqueryTrafficeInfoMenuItem" Header="小时级查询" Click="inqueryTrafficeInfoMenuItem_Click"/>
+                <MenuItem Name="inqueryMiniteTrafficInfoMenuItem" Header="分钟级查询" Click="inqueryMiniteTrafficInfoMenuItem_Click"/>
                 <MenuItem Header="拥塞查询"/>
             </MenuItem>
             <MenuItem Header="邻区" Padding="10 0 10 0">
-                <MenuItem Header="邻区计算"/>
                 <MenuItem Header="邻区查询" Click="Distance_Click"/>
             </MenuItem>
             <Separator/>

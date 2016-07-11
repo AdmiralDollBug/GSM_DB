@@ -27,39 +27,41 @@ namespace GSM_DB
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             string connStr = "Data Source=" + DatabaseInfo.dataSource + ";UID=" + DatabaseInfo.uid + ";PWD=" + DatabaseInfo.pwd + ";Initial Catalog=GSM_DB;Integrated Security=True";
-            SqlConnection connection = new SqlConnection(connStr);
-            SqlCommand command = new SqlCommand("getCellIDList", connection);
-            command.CommandType = System.Data.CommandType.StoredProcedure;
-            connection.Open();
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read()) {
-                comboxBoxCellID.Items.Add((int)reader[0]);
+            using (SqlConnection connection = new SqlConnection(connStr)) {
+                SqlCommand command = new SqlCommand("getCellIDList", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read()) {
+                    comboxBoxCellID.Items.Add((int)reader[0]);
+                }
+                reader.Close();
+                comboxBoxCellID.SelectedIndex = 0;
             }
-            reader.Close();
-            comboxBoxCellID.SelectedIndex = 0;
         }
 
         private void buttonOk_Click(object sender, RoutedEventArgs e) {
             string connStr = "Data Source=" + DatabaseInfo.dataSource + ";UID=" + DatabaseInfo.uid + ";PWD=" + DatabaseInfo.pwd + ";Initial Catalog=GSM_DB;Integrated Security=True";
-            SqlConnection connection = new SqlConnection(connStr);
-            SqlCommand command = new SqlCommand("getCellInfo", connection);
-            command.CommandType = System.Data.CommandType.StoredProcedure;
-            SqlParameter paramCellID = new SqlParameter("@CELLID", SqlDbType.Int);
-            paramCellID.Value = (int)comboxBoxCellID.SelectedItem;
-            command.Parameters.Add(paramCellID);
-            connection.Open();
-            SqlDataReader reader = command.ExecuteReader();
-            while (reader.Read()) {
-                btsNameTextBlock.Text = reader[0].ToString();
-                areaNameTextBlock.Text = reader[1].ToString();
-                lacTextBlock.Text = reader[2].ToString();
-                lontitudeTextBlock.Text = reader[3].ToString();
-                latitudeTextBlock.Text = reader[4].ToString();
-                directionTextBlock.Text = reader[5].ToString();
-                radiousTextBlock.Text = reader[6].ToString();
-                bcchTextBlock.Text = reader[7].ToString();
+            using (SqlConnection connection = new SqlConnection(connStr)) {
+                SqlCommand command = new SqlCommand("getCellInfo", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlParameter paramCellID = new SqlParameter("@CELLID", SqlDbType.Int);
+                paramCellID.Value = (int)comboxBoxCellID.SelectedItem;
+                command.Parameters.Add(paramCellID);
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read()) {
+                    btsNameTextBlock.Text = reader[0].ToString();
+                    areaNameTextBlock.Text = reader[1].ToString();
+                    lacTextBlock.Text = reader[2].ToString();
+                    lontitudeTextBlock.Text = reader[3].ToString();
+                    latitudeTextBlock.Text = reader[4].ToString();
+                    directionTextBlock.Text = reader[5].ToString();
+                    radiousTextBlock.Text = reader[6].ToString();
+                    bcchTextBlock.Text = reader[7].ToString();
+                }
+                reader.Close();
             }
-            reader.Close();
         }
     }
 }

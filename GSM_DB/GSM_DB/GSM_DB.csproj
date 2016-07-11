@@ -112,6 +112,9 @@
     <Compile Include="InqueryCellPage.xaml.cs">
       <DependentUpon>InqueryCellPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InqueryMinuteTrafficInfoPage.xaml.cs">
+      <DependentUpon>InqueryMinuteTrafficInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RegWindow.xaml.cs">
       <DependentUpon>RegWindow.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InqueryCellPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InqueryMinuteTrafficInfoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
