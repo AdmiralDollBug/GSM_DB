@@ -58,5 +58,11 @@ namespace GSM_DB
             Distance distance = new Distance();
             distance.ShowDialog();
         }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
+        }
     }
 }
