@@ -71,7 +71,7 @@ as
 		set tpTime = tpTime/10000;
 	select tpTime as HTime, avg(tpTraff) as HAvgTraff,
 		sum(tpTraff)/avg(tpNTCH) as HTraffPerLine,
-		cast(sum(tpCongsnum) as real)/cast(sum(tpCallnum) as real) as HAvgCongsnum,
+		cast(sum(tpCongsnum) as real)/cast(sum(tpCallnum) as real)*100 as HAvgCongsnum,
 		sum(tpThTraff)/sum(tpTraff) as HThTraffRate
 	into HourlyDetail
 	from tmppc
@@ -118,7 +118,7 @@ as
 		set tpTime = tpTime/100;
 	select tpTime as MTime, avg(tpTraff) as MAvgTraff,
 		sum(tpTraff)/avg(tpNTCH) as MTraffPerLine,
-		cast(sum(tpCongsnum) as real)/cast(sum(tpCallnum) as real) as MAvgCongsnum,
+		cast(sum(tpCongsnum) as real)/cast(sum(tpCallnum) as real)*100 as MAvgCongsnum,
 		sum(tpThTraff)/sum(tpTraff) as MThTraffRate
 	into MinuteDetail
 	from tmppc
@@ -165,7 +165,7 @@ as
 		set tpTime = (tpTime/10000)*10 + ((tpTime/100)%100)/15;
 	select tpTime as QTime, avg(tpTraff) as QAvgTraff,
 		sum(tpTraff)/avg(tpNTCH) as QTraffPerLine,
-		cast(sum(tpCongsnum) as real)/cast(sum(tpCallnum) as real) as QAvgCongsnum,
+		cast(sum(tpCongsnum) as real)/cast(sum(tpCallnum) as real)*100 as QAvgCongsnum,
 		sum(tpThTraff)/sum(tpTraff) as QThTraffRate
 	into QuarterDetail
 	from tmppc
@@ -213,7 +213,7 @@ as
 	select tpTime as CTime, tpCELLID as CCELLID,
 		avg(tpTraff) as CAvgTraff,
 		sum(tpTraff)/avg(tpNTCH) as CTraffPerLine,
-		cast(sum(tpCongsnum) as real)/cast(sum(tpCallnum) as real) as CAvgCongsnum,
+		cast(sum(tpCongsnum) as real)/cast(sum(tpCallnum) as real)*100 as CAvgCongsnum,
 		sum(tpThTraff)/sum(tpTraff) as CThTraffRate
 	into CongsDetail
 	from tmppc
@@ -270,7 +270,7 @@ go
 create procedure getAdjDist
 as
 	if exists(select * from sys.objects 
-		where name = 'ADJDIST')
+		where name = 'ADJDIST' and type = 'U')
 		select * from ADJDIST;
 	else return 1;
 go

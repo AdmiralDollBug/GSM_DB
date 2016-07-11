@@ -201,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="dbCreate.sql" />
+    <Content Include="indexes.sql" />
     <Content Include="procedures.sql" />
     <Content Include="triggers.sql" />
   </ItemGroup>
