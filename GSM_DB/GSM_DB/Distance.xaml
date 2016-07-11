@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GSM_DB"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         Title="Distance" Height="384.136" Width="526.062">
     <Grid Margin="0,0,-8,0">
         <DataGrid x:Name="dataGrid1" 

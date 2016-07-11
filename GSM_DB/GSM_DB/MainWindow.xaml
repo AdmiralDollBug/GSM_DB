@@ -30,7 +30,7 @@
             </MenuItem>
             <MenuItem Header="邻区" Padding="10 0 10 0">
                 <MenuItem Header="邻区计算"/>
-                <MenuItem Header="邻区查询"/>
+                <MenuItem Header="邻区查询" Click="Distance_Click"/>
             </MenuItem>
             <Separator/>
             <MenuItem Header="帮助" Padding="10 0 10 0">

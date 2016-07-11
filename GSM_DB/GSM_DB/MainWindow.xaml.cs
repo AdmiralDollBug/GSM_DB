@@ -24,6 +24,7 @@ namespace GSM_DB
         public MainWindow()
         {
             InitializeComponent();
+            DatabaseInfo.getDatabaseInfo();
             
         }
 
@@ -50,6 +51,12 @@ namespace GSM_DB
         private void inqueryTrafficeInfoMenuItem_Click(object sender, RoutedEventArgs e) {
             ImqueryTrafficInfoPage inqueryTrafficInfoPage = new ImqueryTrafficInfoPage();
             inqueryTrafficInfoPage.ShowDialog();
+        }
+
+        private void Distance_Click(object sender, RoutedEventArgs e)
+        {
+            Distance distance = new Distance();
+            distance.ShowDialog();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace GSM_DB
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            string connStr = "Data Source=HUANGTIANSHUO\\SQLEXPRESS;UID=sa;PWD=123;Initial Catalog=GSM_DB;Integrated Security=True";
+            string connStr = "Data Source=" + DatabaseInfo.dataSource + ";UID=" + DatabaseInfo.uid + ";PWD=" + DatabaseInfo.pwd + ";Initial Catalog=GSM_DB;Integrated Security=True";
             SqlConnection connection = new SqlConnection(connStr);
             SqlCommand command = new SqlCommand("getCellIDList", connection);
             command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -68,7 +68,7 @@ namespace GSM_DB
             {
                 int Cid = Convert.ToInt16(CID);
                 int Dis = Convert.ToInt16(dis);
-                string connStr = "Data Source=HUANGTIANSHUO\\SQLEXPRESS;UID=sa;PWD=123;Initial Catalog=GSM_DB;Integrated Security=True";
+                string connStr = "Data Source=" + DatabaseInfo.dataSource + ";UID=" + DatabaseInfo.uid + ";PWD=" + DatabaseInfo.pwd + ";Initial Catalog=GSM_DB;Integrated Security=True";
                 SqlConnection connection = new SqlConnection(connStr);
                 SqlCommand command = new SqlCommand("setAdjDist", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
