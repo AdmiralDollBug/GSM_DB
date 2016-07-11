@@ -66,6 +66,9 @@
     </ApplicationDefinition>
     <Compile Include="CalcMD5.cs" />
     <Compile Include="DatabaseInfo.cs" />
+    <Compile Include="Distance.xaml.cs">
+      <DependentUpon>Distance.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ExportPage.xaml.cs">
       <DependentUpon>ExportPage.xaml</DependentUpon>
     </Compile>
@@ -75,6 +78,10 @@
     <Compile Include="RegWindow.xaml.cs">
       <DependentUpon>RegWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Distance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ExportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
