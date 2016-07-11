@@ -26,5 +26,30 @@ namespace GSM_DB
             InitializeComponent();
             
         }
+
+        private void ImportMenuItem_Click(object sender, RoutedEventArgs e) {
+            ImportPage importPage = new ImportPage();
+            importPage.ShowDialog();
+        }
+
+        private void ExportMenuItem_Click(object sender, RoutedEventArgs e) {
+            ExportPage exportPage = new ExportPage();
+            exportPage.ShowDialog();
+        }
+
+        private void InqueryBTSMenuItem_Click(object sender, RoutedEventArgs e) {
+            InqueryBTSPage inqueryPage = new InqueryBTSPage();
+            inqueryPage.ShowDialog();
+        }
+
+        private void inqueryCellIDMenuItem_Click(object sender, RoutedEventArgs e) {
+            InqueryCellPage inqueryPage = new InqueryCellPage();
+            inqueryPage.ShowDialog();
+        }
+
+        private void inqueryTrafficeInfoMenuItem_Click(object sender, RoutedEventArgs e) {
+            ImqueryTrafficInfoPage inqueryTrafficInfoPage = new ImqueryTrafficInfoPage();
+            inqueryTrafficInfoPage.ShowDialog();
+        }
     }
 }
