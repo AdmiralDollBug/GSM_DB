@@ -21,11 +21,11 @@ using System.Windows.Shapes;
 namespace GSM_DB
 {
     /// <summary>
-    /// InqueryｍMinuteTrafficInfoPage.xaml 的交互逻辑
+    /// ImqueryTrafficInfoPage.xaml 的交互逻辑
     /// </summary>
-    public partial class InqueryｍMinuteTrafficInfoPage : System.Windows.Window
+    public partial class InqueryTrafficInfoPage : System.Windows.Window
     {
-        public InqueryｍMinuteTrafficInfoPage() {
+        public InqueryTrafficInfoPage() {
             InitializeComponent();
             dataPicker.SelectedDate = new DateTime(2007, 10, 1);
             dataPicker.DisplayDateStart = new DateTime(2007, 9, 1);
@@ -54,14 +54,14 @@ namespace GSM_DB
             DateTime date = (DateTime)dataPicker.SelectedDate;
             DateTime startTime = new DateTime(date.Year, date.Month, date.Day, prevTime.Hour, prevTime.Minute, prevTime.Second);
             DateTime endTime = new DateTime(date.Year, date.Month, date.Day, nextTime.Hour, nextTime.Minute, nextTime.Second);
-            if (startTime.CompareTo(endTime) >= 0) {
+            if(startTime.CompareTo(endTime) >= 0) {
                 System.Windows.MessageBox.Show("起始日期时间必须早于终止日期时间。", "日期填写错误",
                     MessageBoxButton.OK, MessageBoxImage.Warning, MessageBoxResult.OK);
                 return;
             }
             string connStr = "Data Source=" + DatabaseInfo.dataSource + ";UID=" + DatabaseInfo.uid + ";PWD=" + DatabaseInfo.pwd + ";Initial Catalog=GSM_DB;Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connStr)) {
-                SqlCommand command = new SqlCommand("setMinutePhonecallDetail", connection);
+                SqlCommand command = new SqlCommand("setHourlyPhonecallDetail", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 SqlParameter paramCellID = new SqlParameter("@ACELLID", SqlDbType.Int);
                 paramCellID.Value = (int)comboBoxCellID.SelectedItem;
@@ -79,42 +79,52 @@ namespace GSM_DB
                 command.ExecuteNonQuery();
             }
             using (SqlConnection connection = new SqlConnection(connStr)) {
-                SqlCommand command = new SqlCommand("getMinutePhonecallDetail", connection);
+                SqlCommand command = new SqlCommand("getHourlyPhonecallDetail", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 connection.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
-                System.Data.DataTable table = new System.Data.DataTable("MinutePhoneCallDetail");
+                System.Data.DataTable table = new System.Data.DataTable("HourlyPhoneCallDetail");
                 adapter.Fill(table);
-                series.IndependentValuePath = "MTime";
-                switch (comboBoxType.SelectedIndex) {
-                    case 0:
-                        series.DependentValuePath = "MAvgTraff";
-                        chart.Title = "分钟级平均话务量";
-                        break;
-                    case 1:
-                        series.DependentValuePath = "MTraffPerLine";
-                        chart.Title = "分钟级每线话务量";
-                        break;
-                    case 2:
-                        series.DependentValuePath = "MAvgCongsnum";
-                        chart.Title = "分钟级拥塞率";
-                        break;
-                    case 3:
-                        series.DependentValuePath = "MThTraffRate";
-                        chart.Title = "分钟级半速率话务比例";
-                        break;
+                if (comboBoxType.SelectedIndex < 4) {
+                    series.IndependentValuePath = "HTime";
+                    switch (comboBoxType.SelectedIndex) {
+                        case 0:
+                            series.DependentValuePath = "HAvgTraff";
+                            chart.Title = "小时级平均话务量";
+                            break;
+                        case 1:
+                            series.DependentValuePath = "HTraffPerLine";
+                            chart.Title = "小时级每线话务量";
+                            break;
+                        case 2:
+                            series.DependentValuePath = "HAvgCongsnum";
+                            chart.Title = "小时级拥塞率";
+                            break;
+                        case 3:
+                            series.DependentValuePath = "HThTraffRate";
+                            chart.Title = "小时级半速率话务比例";
+                            break;
+                    }
+                    series.Title = comboBoxCellID.Text;
+                    series.DataContext = table.DefaultView;
+                    grid.Visibility = Visibility.Visible;
                 }
-                series.Title = comboBoxCellID.Text;
-                series.DataContext = table.DefaultView;
-                grid.Visibility = Visibility.Visible;
-
-                //string d = date.ToString();
-                //string p = prevTime.ToString();
-                //string n = nextTime.ToString();
+                else {
+                    series2.IndependentValuePath = "HTime";
+                    series3.IndependentValuePath = "HTime";
+                    series2.DependentValuePath = "HAvgTraff";
+                    series3.DependentValuePath = "HTraffPerLine";
+                    series2.Title = "平均";
+                    series3.Title = "每线";
+                    chart2.Title = "小时级话务量";
+                    series2.DataContext = table.DefaultView;
+                    series3.DataContext = table.DefaultView;
+                    grid2.Visibility = Visibility.Visible;
+                }
+                
                 string Current = Directory.GetCurrentDirectory();
-                //string saveFileName = Current + "\\" + "MINUTE_" + d + "_" + p + "to" + n;
-                string saveFileName = Current + "\\" + "MINUTE";
+                string saveFileName = Current + "\\" + "HOUR";
                 Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
                 Workbooks mWorkbooks = excelApp.Workbooks;
                 Workbook mWorkbook = mWorkbooks.Add(XlWBATemplate.xlWBATWorksheet);
@@ -193,7 +203,9 @@ namespace GSM_DB
         private void hideButton_Click(object sender, RoutedEventArgs e) {
             grid.Visibility = Visibility.Hidden;
         }
-
+        private void hideButton2_Click(object sender, RoutedEventArgs e) {
+            grid2.Visibility = Visibility.Hidden;
+        }
         private void buttonClose_Click(object sender, RoutedEventArgs e) {
             this.Close();
         }

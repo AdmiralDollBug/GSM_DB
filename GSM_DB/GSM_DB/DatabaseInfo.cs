@@ -9,8 +9,8 @@ namespace GSM_DB
 {
     class DatabaseInfo
     {
-        public static string dataSource = "THESHARING\\SQLEXPRESS";
-        public static string uid = "thesharing";
+        public static string dataSource = "CYPRESTAR\\SQLEXPRESS";
+        public static string uid = "cyprestar";
         public static string pwd = "HZL04291316wr";
 
         public static void getDatabaseInfo() {

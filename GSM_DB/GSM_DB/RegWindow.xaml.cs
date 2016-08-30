@@ -75,13 +75,21 @@ namespace GSM_DB
             }
         }
 
-        private void PassWord_PasswordChanged(object sender, RoutedEventArgs e) {
+        private void PassWordBox_PasswordChanged(object sender, RoutedEventArgs e) {
             if (AccountTextBox.Text == "" || PassWord.Password == "") {
                 OkButton.IsEnabled = false;
             }
             else {
                 OkButton.IsEnabled = true;
             }
+        }
+
+        private void buttonClose_Click(object sender, RoutedEventArgs e) {
+            this.Close();
+        }
+
+        private void buttonMinimize_Click(object sender, RoutedEventArgs e) {
+            this.WindowState = WindowState.Minimized;
         }
     }
 }

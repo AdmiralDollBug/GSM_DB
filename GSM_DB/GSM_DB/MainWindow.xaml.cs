@@ -23,9 +23,7 @@ namespace GSM_DB
     {
         public MainWindow()
         {
-            InitializeComponent();
-            DatabaseInfo.getDatabaseInfo();
-            
+            InitializeComponent();           
         }
 
         private void ImportMenuItem_Click(object sender, RoutedEventArgs e) {
@@ -49,7 +47,7 @@ namespace GSM_DB
         }
 
         private void inqueryTrafficeInfoMenuItem_Click(object sender, RoutedEventArgs e) {
-            ImqueryTrafficInfoPage inqueryTrafficInfoPage = new ImqueryTrafficInfoPage();
+            InqueryTrafficInfoPage inqueryTrafficInfoPage = new InqueryTrafficInfoPage();
             inqueryTrafficInfoPage.ShowDialog();
         }
 
@@ -66,7 +64,34 @@ namespace GSM_DB
         }
 
         private void inqueryMiniteTrafficInfoMenuItem_Click(object sender, RoutedEventArgs e) {
+            InqueryｍMinuteTrafficInfoPage queryPage = new InqueryｍMinuteTrafficInfoPage();
+            queryPage.ShowDialog();
+        }
+        private void inqueryQuarterTrafficInfoMenuItem_Click(object sender, RoutedEventArgs e) {
+            InqueryQuarterTrafficInfoPage queryPage = new InqueryQuarterTrafficInfoPage();
+            queryPage.ShowDialog();
+        }
+        private void inqueryCongsInfoMenuItem_Click(object sender, RoutedEventArgs e) {
+            InqueryCongsInfoPage queryPage = new InqueryCongsInfoPage();
+            queryPage.ShowDialog();
+        }
 
+        private void exitMenuItem_Click(object sender, RoutedEventArgs e) {
+            this.Close();
+        }
+
+        private void buttonClose_Click(object sender, RoutedEventArgs e) {
+            this.Close();
+        }
+
+        private void buttonMinimize_Click(object sender, RoutedEventArgs e) {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Image_MouseMove(object sender, MouseEventArgs e) {
+            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed) {
+                this.DragMove();
+            }
         }
     }
 }

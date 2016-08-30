@@ -23,5 +23,18 @@ namespace GSM_DB
         {
             InitializeComponent();
         }
+        private void buttonClose_Click(object sender, RoutedEventArgs e) {
+            this.Close();
+        }
+
+        private void buttonMinimize_Click(object sender, RoutedEventArgs e) {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Image_MouseMove(object sender, MouseEventArgs e) {
+            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed) {
+                this.DragMove();
+            }
+        }
     }
 }

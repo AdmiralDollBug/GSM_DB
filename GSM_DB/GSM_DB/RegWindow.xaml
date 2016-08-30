@@ -5,49 +5,78 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GSM_DB"
         mc:Ignorable="d"
-        Title="RegWindow" Height="300" Width="300"
-        WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="注册" Height="300" Width="300"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Label Content="账号" Grid.Row="1" 
-               Width="40" Height="30" 
-               HorizontalAlignment="Left" 
-               FontSize="14"
-               Margin="40,15,0,15"/>
-        <TextBox x:Name="AccountTextBox"  
-                 Grid.Row="1" Width="155" 
-                 FontSize="14"
-                 Margin="95,15,0,15" 
-                 HorizontalAlignment="Left"
-                 TextChanged="AccountTextBox_TextChanged"/>
-        <Label Content="密码" Grid.Row="2" 
-               Width="40" Height="30" 
-               HorizontalAlignment="Left" 
-               FontSize="14"
-               Margin="40,15,0,15"/>
-        <PasswordBox x:Name="PassWord"  Grid.Row="2" 
-                     Width="155" Margin="95,15,0,15" 
+        <Border BorderThickness="1" BorderBrush="#0063b1" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2.5*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="buttonClose" Height="20" Width="20" Margin="258,10,20,105" 
+                        Background="Transparent" BorderBrush="Transparent" Click="buttonClose_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Image Source="CloseIcon.png"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="buttonMinimize" Height="20" Width="20" Margin="228,10,50,105"
+                        Background="Transparent" BorderBrush="Transparent" Click="buttonMinimize_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Image Source="MinimizeIcon.png"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <TextBlock Text="注册" Foreground="#0063b1" 
+                       FontSize="36"
+                       Margin="98,50,99,24"
+                       TextAlignment="Center" />
+                <Label Content="账号" Grid.Row="1" 
+                   Width="40" Height="30" 
+                   HorizontalAlignment="Left" 
+                   FontSize="14"
+                   Margin="50,13,0,20"/>
+                <TextBox x:Name="AccountTextBox"  
+                     Grid.Row="1" Width="139" 
+                     Height="24"
                      FontSize="14"
+                     Margin="111,15,0,15"
                      HorizontalAlignment="Left"
-                     PasswordChanged="PassWord_PasswordChanged"/>
-        <Button x:Name="OkButton" Grid.Row="3" 
-                Height="25" Width="80" 
-                Margin="40 15 10 15" 
-                Foreground="White" Style="{StaticResource functionButton}"
-                HorizontalAlignment="Left"
-                Content="确定" Click="OkButton_Click"
-                IsEnabled="False"/>
-        <Button x:Name="CancelButton" Grid.Row="3" 
-                Height="25" Width="80" 
-                Margin="170 15 10 15" 
-                Foreground="White" Style="{StaticResource functionButton}"
-                HorizontalAlignment="Left"
-                Content="取消" Click="CancelButton_Click"/>
+                     TextChanged="AccountTextBox_TextChanged"
+                         BorderBrush="#0063b1"/>
+                <Label Content="密码" Grid.Row="2" Width="38" 
+                   Height="30" HorizontalAlignment="Left" 
+                   FontSize="14"
+                   Margin="50,13,0,20"/>
+                <PasswordBox x:Name="PassWord"  Grid.Row="2" 
+                             Width="139" Margin="111,15,0,15"
+                             Height="24"
+                             FontSize="14"
+                             HorizontalAlignment="Left"
+                             PasswordChanged="PassWordBox_PasswordChanged"
+                             BorderBrush="#0063b1"/>
+                <Button x:Name="OkButton" Grid.Row="3" 
+                    Height="25" Width="80" 
+                    Margin="50 15 10 15" 
+                    Foreground="White" Style="{StaticResource functionButton}"
+                    HorizontalAlignment="Left"
+                    Content="确定" Click="OkButton_Click"
+                    IsEnabled="False"/>
+                <Button x:Name="CancelButton" Grid.Row="3" 
+                    Height="25" Width="80" 
+                    Margin="170 15 10 15" 
+                    Foreground="White" Style="{StaticResource functionButton}"
+                    HorizontalAlignment="Left"
+                    Content="取消" Click="CancelButton_Click"/>
 
+            </Grid>
+        </Border>
     </Grid>
+
 </Window>

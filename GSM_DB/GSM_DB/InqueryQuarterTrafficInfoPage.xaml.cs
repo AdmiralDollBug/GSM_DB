@@ -21,11 +21,11 @@ using System.Windows.Shapes;
 namespace GSM_DB
 {
     /// <summary>
-    /// InqueryｍMinuteTrafficInfoPage.xaml 的交互逻辑
+    /// InqueryQuarterTrafficInfoPage.xaml 的交互逻辑
     /// </summary>
-    public partial class InqueryｍMinuteTrafficInfoPage : System.Windows.Window
+    public partial class InqueryQuarterTrafficInfoPage : System.Windows.Window
     {
-        public InqueryｍMinuteTrafficInfoPage() {
+        public InqueryQuarterTrafficInfoPage() {
             InitializeComponent();
             dataPicker.SelectedDate = new DateTime(2007, 10, 1);
             dataPicker.DisplayDateStart = new DateTime(2007, 9, 1);
@@ -48,6 +48,7 @@ namespace GSM_DB
             }
         }
 
+
         private void buttonOk_Click(object sender, RoutedEventArgs e) {
             DateTime prevTime = (DateTime)timePickerPrev.Value;
             DateTime nextTime = (DateTime)timePickerNext.Value;
@@ -61,7 +62,7 @@ namespace GSM_DB
             }
             string connStr = "Data Source=" + DatabaseInfo.dataSource + ";UID=" + DatabaseInfo.uid + ";PWD=" + DatabaseInfo.pwd + ";Initial Catalog=GSM_DB;Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connStr)) {
-                SqlCommand command = new SqlCommand("setMinutePhonecallDetail", connection);
+                SqlCommand command = new SqlCommand("setQuarterPhonecallDetail", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 SqlParameter paramCellID = new SqlParameter("@ACELLID", SqlDbType.Int);
                 paramCellID.Value = (int)comboBoxCellID.SelectedItem;
@@ -79,42 +80,39 @@ namespace GSM_DB
                 command.ExecuteNonQuery();
             }
             using (SqlConnection connection = new SqlConnection(connStr)) {
-                SqlCommand command = new SqlCommand("getMinutePhonecallDetail", connection);
+                SqlCommand command = new SqlCommand("getQuarterPhonecallDetail", connection);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 connection.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
-                System.Data.DataTable table = new System.Data.DataTable("MinutePhoneCallDetail");
+                System.Data.DataTable table = new System.Data.DataTable("QuarterPhoneCallDetail");
                 adapter.Fill(table);
-                series.IndependentValuePath = "MTime";
+                series.IndependentValuePath = "QTime";
                 switch (comboBoxType.SelectedIndex) {
                     case 0:
-                        series.DependentValuePath = "MAvgTraff";
-                        chart.Title = "分钟级平均话务量";
+                        series.DependentValuePath = "QAvgTraff";
+                        chart.Title = "15分钟级平均话务量";
                         break;
                     case 1:
-                        series.DependentValuePath = "MTraffPerLine";
-                        chart.Title = "分钟级每线话务量";
+                        series.DependentValuePath = "QTraffPerLine";
+                        chart.Title = "15分钟级每线话务量";
                         break;
                     case 2:
-                        series.DependentValuePath = "MAvgCongsnum";
-                        chart.Title = "分钟级拥塞率";
+                        series.DependentValuePath = "QAvgCongsnum";
+                        chart.Title = "15分钟级拥塞率";
                         break;
                     case 3:
-                        series.DependentValuePath = "MThTraffRate";
-                        chart.Title = "分钟级半速率话务比例";
+                        series.DependentValuePath = "QThTraffRate";
+                        chart.Title = "15分钟级半速率话务比例";
                         break;
                 }
                 series.Title = comboBoxCellID.Text;
                 series.DataContext = table.DefaultView;
                 grid.Visibility = Visibility.Visible;
 
-                //string d = date.ToString();
-                //string p = prevTime.ToString();
-                //string n = nextTime.ToString();
                 string Current = Directory.GetCurrentDirectory();
                 //string saveFileName = Current + "\\" + "MINUTE_" + d + "_" + p + "to" + n;
-                string saveFileName = Current + "\\" + "MINUTE";
+                string saveFileName = Current + "\\" + "QUARTER";
                 Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
                 Workbooks mWorkbooks = excelApp.Workbooks;
                 Workbook mWorkbook = mWorkbooks.Add(XlWBATemplate.xlWBATWorksheet);

@@ -32,7 +32,7 @@ namespace GSM_DB
                 connection.Open();
                 commandDatabase.ExecuteNonQuery();
             }
-            string connectionStr2 = "Data Source=" + DatabaseInfo.dataSource + ";UID=" + DatabaseInfo.uid + ";PWD=" + DatabaseInfo.pwd + "Initial Catalog=AccountDB;Integrated Security=True";
+            string connectionStr2 = "Data Source=" + DatabaseInfo.dataSource + ";UID=" + DatabaseInfo.uid + ";PWD=" + DatabaseInfo.pwd + ";Initial Catalog=AccountDB;Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connectionStr2)) {
                 connection.Open();
                 string queryStringTable = "if not exists(select * from dbo.sysobjects " +
@@ -111,6 +111,14 @@ namespace GSM_DB
             else {
                 OkButton.IsEnabled = true;
             }
+        }
+
+        private void buttonClose_Click(object sender, RoutedEventArgs e) {
+            this.Close();
+        }
+
+        private void buttonMinimize_Click(object sender, RoutedEventArgs e) {
+            this.WindowState = WindowState.Minimized;
         }
     }
 }
